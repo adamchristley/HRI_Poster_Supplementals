@@ -1,109 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Supplemental Materials | LVEF Prediction from Angiography</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<title>Supplemental Materials | LVEF Prediction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <style>
-  body {
-    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #fafafa;
-    color: #222;
-    line-height: 1.7;
-  }
+:root {
+  --bg: #0e1117;
+  --card: #161b22;
+  --text: #e6edf3;
+  --muted: #9da7b3;
+  --line: #2a2f3a;
+  --accent: #a78bfa;
+  --radius: 20px;
+}
 
-  .container {
-    max-width: 900px;
-    margin: auto;
-    padding: 60px 24px;
-  }
+* { box-sizing: border-box; }
 
-  h1, h2 {
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    text-align: center;
-  }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: radial-gradient(circle at top, #161b22, #0e1117);
+  color: var(--text);
+  line-height: 1.6;
+}
 
-  h1 {
-    font-size: 2.2rem;
-    margin-bottom: 0.8em;
-  }
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px 20px;
+}
 
-  h2 {
-    margin-top: 2.5em;
-    margin-bottom: 1em;
-    font-size: 1.5rem;
-  }
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 60px 30px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #161b22, #0e1117);
+  border: 1px solid var(--line);
+  margin-bottom: 30px;
+  position: relative;
+}
 
-  p, li {
-    font-size: 1.05rem;
-  }
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(167,139,250,0.25), transparent);
+  filter: blur(90px);
+}
 
-  hr {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 3em 0;
-  }
+.hero h1 {
+  font-size: 2.1rem;
+  margin-bottom: 15px;
+}
 
-  .refs ol {
-    padding-left: 1.4em;
-  }
+.hero p {
+  color: var(--muted);
+  max-width: 700px;
+  margin: auto;
+}
 
-  .contact {
-    text-align: center;
-    margin-top: 3em;
-    font-size: 0.95rem;
-    opacity: 0.8;
-  }
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+/* CARDS */
+.card {
+  grid-column: span 12;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+/* SPLIT */
+.half { grid-column: span 6; }
+
+/* HEADINGS */
+h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-box {
+  background: #0e1117;
+  border: 1px solid var(--line);
+  padding: 16px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.stat-box .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-box .label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  color: var(--accent);
+  text-align: left;
+}
+
+/* TAGS */
+.tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #0e1117;
+  border: 1px solid var(--line);
+  margin-right: 6px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+/* NOTE */
+.note {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #0e1117;
+  color: var(--muted);
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--muted);
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+  .half { grid-column: span 12; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .stats { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-<h1>Predicting Left Ventricular Ejection Fraction from Coronary Angiography using 3D-CNN + Transformer</h1>
-<p style="text-align:center; margin-top:-10px;">
-<h2><strong>Supplemental Materials</strong></h2>
-</p>
+  <section class="hero">
+    <h1>Predicting Left Ventricular Ejection Fraction from Coronary Angiography</h1>
+    <p>
+      A deep learning framework combining convolutional and transformer-based modeling 
+      to estimate LVEF directly from invasive coronary angiography sequences.
+    </p>
+  </section>
 
-<hr>
+  <div class="grid">
 
-<h2>Full References</h2>
-<div class="refs">
-<ol>
-  <li>[1] Rauf, et. al. (2017, October 1). Current diagnostic yield of invasive coronary angiography at a District General Hospital. The British Journal of Cardiology. https://bjcardio.co.uk/2017/10/current-diagnostic-yield-of-invasive-coronary-angiography-at-a-district-general-hospital/</li>
-  <li>[2] Gungor, et. al.(2016, July).International Journal of the Cardiovascular Academy. Lao cranial (a), Rao Caudal (b), and lateral (c) ... Research Gate. https://www.researchgate.net/figure/LAO-cranial-A-RAO-caudal-B-and-lateral-C-views-showing-the-origin-of-the_fig1_304745965</li>
-</ol>
+    <section class="card">
+      <h2>Project Overview</h2>
+      <p>
+        This project explores automated prediction of Left Ventricular Ejection Fraction (LVEF) directly from invasive coronary angiography (ICA) videos.
+      </p>
+      <p>
+        The model combines convolutional feature extraction with transformer-based temporal modeling to capture both spatial structure and contrast-flow dynamics.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Main Performance</h2>
+      <div class="stats">
+        <div class="stat-box">
+          <div class="value">0.496</div>
+          <div class="label">PCC</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">0.047</div>
+          <div class="label">MAE</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">0.074</div>
+          <div class="label">RMSE</div>
+        </div>
+        <div class="stat-box">
+          <div class="value">95%</div>
+          <div class="label">&lt;40% Accuracy</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card half">
+      <h2>Dataset</h2>
+      <ul>
+        <li>1,041 videos</li>
+        <li>413 patients</li>
+        <li>13–114 frames</li>
+        <li>512–1000 resolution</li>
+      </ul>
+    </section>
+
+    <section class="card half">
+      <h2>Model</h2>
+      <p>
+        2D+t CNN backbone with transformer-based temporal reasoning.
+      </p>
+      <div>
+        <span class="tag">CNN</span>
+        <span class="tag">Transformer</span>
+        <span class="tag">Spatio-Temporal</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Model Comparisons</h2>
+      <table>
+        <tr>
+          <th>Model</th>
+          <th>PCC</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td>ViT3D</td>
+          <td>0.12–0.18</td>
+          <td>Baseline</td>
+        </tr>
+        <tr>
+          <td><strong>CNN + Transformer</strong></td>
+          <td><strong>0.496</strong></td>
+          <td>Best</td>
+        </tr>
+        <tr>
+          <td>Multi-view</td>
+          <td>0.2 → 0.3</td>
+          <td>In progress</td>
+        </tr>
+      </table>
+
+      <div class="note">
+        Hybrid model significantly outperforms transformer-only baseline. Multi-view expected to improve further.
+      </div>
+    </section>
+
+    <section class="card half">
+      <h2>Key Findings</h2>
+      <ul>
+        <li>Strong performance for low LVEF detection</li>
+        <li>Tradeoff between low vs high predictions</li>
+        <li>Hybrid model outperforms baseline</li>
+      </ul>
+    </section>
+
+    <section class="card half">
+      <h2>Future Work</h2>
+      <ul>
+        <li>Multi-view learning</li>
+        <li>Segmentation integration</li>
+        <li>Cross-view attention</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    <p><strong>Adam Christley</strong></p>
+    <p>Michigan Technological University</p>
+    <p>achristl@mtu.edu</p>
+  </div>
+
 </div>
 
-<h2>Acknowledgements</h2>
-<p>
-I would like to thank my advisor and PI, <strong>Dr. Weihua Zhou</strong>, for his guidance and continued support throughout this project. I also acknowledge the <strong>Medical Imaging and Informatics Lab</strong> for providing computational resources and data access, and <strong>Caeden Kidd</strong> for his valuable input and assistance. This work was supported by Dr. Zhou’s research grants and the <strong>Undergraduate Research Internship Program (URIP)</strong> at Michigan Technological University.
-</p>
-
-<h2>Model Summary</h2>
-<p>
-This work integrates a 2D+t convolutional neural network for spatial feature extraction with a Transformer-based module for temporal reasoning across contrast-flow frames in coronary angiography. The combined architecture enables robust estimation of LVEF directly from angiographic sequences.
-</p>
-
-<h2>Performance Metrics</h2>
-<table style="width:100%; border-collapse: collapse; margin-top: 1em;">
-  <tr><td>PCC</td><td>0.496</td></tr>
-  <tr><td>MAE</td><td>0.047</td></tr>
-  <tr><td>RMSE</td><td>0.074</td></tr>
-  <tr><td>Accuracy &gt; 40%</td><td>0.950</td></tr>
-</table>
-
-<div class="contact">
-<hr>
-<p><strong>Adam Christley</strong> • Undergraduate Researcher</p>
-<p>Michigan Technological University • Department of Computer Engineering</p>
-<p>Email: achristl@mtu.edu</p>
-</div>
-
-</div>
 </body>
 </html>
